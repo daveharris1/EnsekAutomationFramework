@@ -1,4 +1,4 @@
-﻿namespace EnsekAutomationFramework.TestModels
+﻿namespace EnsekAutomationFramework.TestHelperModels
 {
     public class EnergyOrderModel
     {

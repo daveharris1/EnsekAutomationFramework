@@ -1,5 +1,5 @@
-﻿using ApiHelper;
-using EnsekAutomationFramework.Helpers;
+﻿using EnsekAutomationFramework.ApiHandler;
+using EnsekAutomationFramework.TestHelpers;
 
 namespace EnsekAutomationFramework
 {
@@ -8,12 +8,12 @@ namespace EnsekAutomationFramework
     {
         private string baseAddress = "https://qacandidatetest.ensek.io";
 
-        private ApiHandler _apiHandler;
+        private RestApiHandler _restApiHandler;
 
         [TestInitialize]
         public void TestIntialize()
         {
-            _apiHandler = new ApiHandler(baseAddress);
+            _restApiHandler = new RestApiHandler(baseAddress);
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace EnsekAutomationFramework
         public async Task Put_Successfully_Buy_Energy_Quanity(int energyId, int quantityToBuy)
         {
             //ACT
-            var energyPurchaseResponse = await _apiHandler.PutBuyEnergyQuantityAsync(energyId, quantityToBuy);
+            var energyPurchaseResponse = await _restApiHandler.PutBuyEnergyQuantityAsync(energyId, quantityToBuy);
 
             //ASSERT
             Assert.IsNotNull(energyPurchaseResponse);
@@ -46,7 +46,7 @@ namespace EnsekAutomationFramework
             string expectedMessage = "There is no nuclear fuel to purchase!";
 
             //ACT
-            var energyPurchaseResponse = await _apiHandler.PutBuyEnergyQuantityAsync(energyId, quantityToBuy);
+            var energyPurchaseResponse = await _restApiHandler.PutBuyEnergyQuantityAsync(energyId, quantityToBuy);
 
             //ASSERT
             Assert.IsNotNull(energyPurchaseResponse);
@@ -61,7 +61,7 @@ namespace EnsekAutomationFramework
         [TestCleanup]
         public void TestCleanUp()
         {
-            _apiHandler.Dispose();
+            _restApiHandler.Dispose();
         }
     }
 }

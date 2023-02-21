@@ -5,8 +5,6 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsekAutomationFramework", "EnsekAutomationFramework.csproj", "{EB882579-5BF1-4E9E-BE99-3201E777A624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiHelper", "..\ApiHelper\ApiHelper.csproj", "{0A67B80A-F9E6-4488-BCA6-04DA1941EA41}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{EB882579-5BF1-4E9E-BE99-3201E777A624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB882579-5BF1-4E9E-BE99-3201E777A624}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB882579-5BF1-4E9E-BE99-3201E777A624}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A67B80A-F9E6-4488-BCA6-04DA1941EA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A67B80A-F9E6-4488-BCA6-04DA1941EA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A67B80A-F9E6-4488-BCA6-04DA1941EA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A67B80A-F9E6-4488-BCA6-04DA1941EA41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

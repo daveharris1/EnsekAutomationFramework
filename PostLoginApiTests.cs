@@ -1,5 +1,5 @@
-﻿using ApiHelper;
-using ApiHelper.RequestModels;
+﻿using EnsekAutomationFramework.ApiHandler;
+using EnsekAutomationFramework.ApiHandler.RequestModels;
 
 namespace EnsekAutomationFramework
 {
@@ -8,12 +8,12 @@ namespace EnsekAutomationFramework
     {
         private string baseAddress = "https://qacandidatetest.ensek.io";
 
-        private ApiHandler _apiHandler;
+        private RestApiHandler _restApiHandler;
 
         [TestInitialize]
         public void TestIntialize()
         {
-            _apiHandler = new ApiHandler(baseAddress);
+            _restApiHandler = new RestApiHandler(baseAddress);
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace EnsekAutomationFramework
             };
 
             //ACT
-            var loginResponse = await _apiHandler.PostLoginAsync(loginRequest);
+            var loginResponse = await _restApiHandler.PostLoginAsync(loginRequest);
 
             //ASSERT
             Assert.IsNotNull(loginResponse);
@@ -52,7 +52,7 @@ namespace EnsekAutomationFramework
             };
 
             //ACT
-            var loginResponse = await _apiHandler.PostLoginAsync(loginRequest);
+            var loginResponse = await _restApiHandler.PostLoginAsync(loginRequest);
 
             //ASSERT
             Assert.IsNotNull(loginResponse);
@@ -65,7 +65,7 @@ namespace EnsekAutomationFramework
         [TestCleanup]
         public void TestCleanUp()
         {
-            _apiHandler.Dispose();
+            _restApiHandler.Dispose();
         }
     }
 }
