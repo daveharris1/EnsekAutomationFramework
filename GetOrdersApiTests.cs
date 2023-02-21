@@ -1,8 +1,7 @@
-﻿using ApiHelper;
-using ApiHelper.ResponseModels;
-using EnsekAutomationFramework.Helpers;
+﻿using EnsekAutomationFramework.ApiHandler;
+using EnsekAutomationFramework.ApiHandler.ResponseModels;
 using EnsekAutomationFramework.TestHelperModels;
-using EnsekAutomationFramework.TestModels;
+using EnsekAutomationFramework.TestHelpers;
 
 namespace EnsekAutomationFramework
 {
@@ -11,12 +10,12 @@ namespace EnsekAutomationFramework
     {
         private string baseAddress = "https://qacandidatetest.ensek.io";
 
-        private ApiHandler _apiHandler;
+        private RestApiHandler _restApiHandler;
 
         [TestInitialize]
         public void TestIntialize()
         {
-            _apiHandler = new ApiHandler(baseAddress);
+            _restApiHandler = new RestApiHandler(baseAddress);
         }
 
         [TestMethod]
@@ -34,7 +33,7 @@ namespace EnsekAutomationFramework
             //ACT
             var successfulEnergyOrders = await CreateEnergyOrders(energyOrderModels);
 
-            var GetOrdersResponse = await _apiHandler.GetOrdersAsync();
+            var GetOrdersResponse = await _restApiHandler.GetOrdersAsync();
 
             //ASSERT
             Assert.IsNotNull(GetOrdersResponse);
@@ -59,7 +58,7 @@ namespace EnsekAutomationFramework
         public async Task Get_All_Successful_Orders_Preceding_Todays_Date()
         {
             //ACT
-            var GetOrdersResponse = await _apiHandler.GetOrdersAsync();
+            var GetOrdersResponse = await _restApiHandler.GetOrdersAsync();
 
             //ASSERT
             Assert.IsNotNull(GetOrdersResponse);
@@ -99,7 +98,7 @@ namespace EnsekAutomationFramework
 
             await Parallel.ForEachAsync(energyOrdersToCreate, parallelOptions, async (energyOrderToCreate, token) =>
             {
-                var energyPurchaseResponse = await _apiHandler.PutBuyEnergyQuantityAsync(energyOrderToCreate.energyId, energyOrderToCreate.quantityToBuy);
+                var energyPurchaseResponse = await _restApiHandler.PutBuyEnergyQuantityAsync(energyOrderToCreate.energyId, energyOrderToCreate.quantityToBuy);
 
                 if (energyPurchaseResponse.statusCode == 200)
                 {
@@ -120,7 +119,7 @@ namespace EnsekAutomationFramework
         [TestCleanup]
         public void TestCleanUp()
         {
-            _apiHandler.Dispose();
+            _restApiHandler.Dispose();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EnsekAutomationFramework.Helpers
+﻿namespace EnsekAutomationFramework.TestHelpers
 {
     public static class OrderIdHelper
     {
@@ -24,7 +24,7 @@
                 return guid.ToString();
             }
 
-            return String.Empty;
+            return string.Empty;
         }
     }
 }
