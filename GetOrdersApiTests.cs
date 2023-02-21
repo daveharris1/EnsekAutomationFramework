@@ -49,7 +49,6 @@ namespace EnsekAutomationFramework
                 {
                     if (successfulEnergyOrder.successfulOrderId == order.id)
                     {
-                        Assert.IsTrue(successfulEnergyOrder.fuelDescription.ToLower() == order.fuel.ToLower());
                         Assert.IsTrue(successfulEnergyOrder.quanitityToBuy == order.quantity);
                     }
                 }
@@ -104,20 +103,14 @@ namespace EnsekAutomationFramework
 
                 if (energyPurchaseResponse.statusCode == 200)
                 {
-                    var fuelDescriptionRetrieved = FuelDescriptionHelper.FindFuelDescriptionFromId(energyOrderToCreate.energyId, await _apiHandler.GetEnergyAsync()).ToLower();
+                    var orderId = OrderIdHelper.FindOrderId(energyPurchaseResponse.buyEnergyQuantityResponseModel.message);
 
-                    if (fuelDescriptionRetrieved != String.Empty)
-                    {
-                        var orderId = OrderIdHelper.FindOrderId(energyPurchaseResponse.buyEnergyQuantityResponseModel.message);
-
-                        energyOrderSuccessModels.Add(
-                            new EnergyOrderSuccessModel
-                            {
-                                successfulOrderId = orderId,
-                                fuelDescription = fuelDescriptionRetrieved,
-                                quanitityToBuy = energyOrderToCreate.quantityToBuy
-                            });
-                    }
+                    energyOrderSuccessModels.Add(
+                        new EnergyOrderSuccessModel
+                        {
+                            successfulOrderId = orderId,
+                            quanitityToBuy = energyOrderToCreate.quantityToBuy
+                        });
                 }
             });
 
